@@ -18,7 +18,7 @@ public class DataGenerators {
     public static void gatherData(GatherDataEvent event) {
         DataGenerator gen = event.getGenerator();
         if (event.includeClient()) {
-            gen.m_123914_(new SSMLanguageProvider(gen, "en_us"));
+            gen.addProvider(new SSMLanguageProvider(gen, "en_us"));
         }
 
     }

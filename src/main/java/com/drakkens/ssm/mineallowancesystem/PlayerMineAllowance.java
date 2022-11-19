@@ -3,8 +3,7 @@ package com.drakkens.ssm.mineallowancesystem;
 import net.minecraft.nbt.CompoundTag;
 
 public class PlayerMineAllowance {
-//TODO: Config this
-    private int mineAllowance = 3;
+    private int mineAllowance = PlayerAllowanceConfig.DAILY_MINES.get();
 
     public PlayerMineAllowance() {
     }

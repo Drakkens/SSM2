@@ -1,6 +1,7 @@
 package com.drakkens.ssm;
 
 import com.drakkens.ssm.setup.ClientSetup;
+import com.drakkens.ssm.setup.Config;
 import com.drakkens.ssm.setup.ModSetup;
 import com.drakkens.ssm.setup.Registration;
 import net.minecraftforge.api.distmarker.Dist;
@@ -19,6 +20,9 @@ public class StopSpammingMines {
     public StopSpammingMines() {
         ModSetup.setup();
         Registration.init();
+        Config.register();
+
+
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
         modBus.addListener(ModSetup::init);
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> modBus.addListener(ClientSetup::init));

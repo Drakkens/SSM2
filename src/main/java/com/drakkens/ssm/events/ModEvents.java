@@ -2,6 +2,7 @@ package com.drakkens.ssm.events;
 
 import com.drakkens.ssm.commands.ResetMines;
 import com.drakkens.ssm.mineallowancesystem.MineAllowanceManager;
+import com.drakkens.ssm.mineallowancesystem.PlayerAllowanceConfig;
 import com.drakkens.ssm.mineallowancesystem.PlayerMineAllowanceProvider;
 import net.geforcemods.securitycraft.blocks.mines.ExplosiveBlock;
 import net.minecraft.ChatFormatting;
@@ -22,7 +23,6 @@ import net.minecraftforge.server.command.ConfigCommand;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Iterator;
 import java.util.List;
 
 @EventBusSubscriber(
@@ -50,13 +50,11 @@ public class ModEvents {
                         player.sendMessage((new TranslatableComponent("message.noallowance")).withStyle(ChatFormatting.YELLOW), Util.NIL_UUID);
                     } else {
                         playerMineAllowance.subtractMineAllowance(1);
-                        player.sendMessage((new TranslatableComponent("message.allowance", new Object[]{playerMineAllowance.getMineAllowance()})).withStyle(ChatFormatting.GREEN), Util.NIL_UUID);
+                        player.sendMessage((new TranslatableComponent("message.allowance", playerMineAllowance.getMineAllowance())).withStyle(ChatFormatting.GREEN), Util.NIL_UUID);
                     }
-
                 });
             }
         }
-
     }
 
     @SubscribeEvent
@@ -72,15 +70,11 @@ public class ModEvents {
                 List<ServerPlayer> players = SERVER.getPlayerList().getPlayers();
 
                 for (ServerPlayer player : players) {
-                    player.getCapability(PlayerMineAllowanceProvider.PLAYER_MINE_ALLOWANCE).ifPresent((playerMineAllowance) -> {
-                        //TODO: Config this
-                        playerMineAllowance.setMineAllowance(3);
-                    });
+                    player.getCapability(PlayerMineAllowanceProvider.PLAYER_MINE_ALLOWANCE).ifPresent((playerMineAllowance) -> playerMineAllowance.setMineAllowance(PlayerAllowanceConfig.DAILY_MINES.get()));
                     MineAllowanceManager.getData(SERVER).setLastReset(currentDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
                 }
             }
         }
-
     }
 
     @SubscribeEvent
