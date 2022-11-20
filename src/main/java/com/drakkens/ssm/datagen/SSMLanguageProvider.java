@@ -11,5 +11,6 @@ public class SSMLanguageProvider extends LanguageProvider {
     protected void addTranslations() {
         this.add("message.noallowance", "No more mines allowed today");
         this.add("message.allowance", "You can still place %s mines");
+        this.add("message.nogadgets", "Nice try! Can't place mines with Gadgets");
     }
 }

@@ -177,6 +177,8 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
     implementation fg.deobf('curse.maven:securitycraft-64760:3921270')
+    implementation fg.deobf('curse.maven:buildinggadgets-298187:4095788')
+
 
 }
 
