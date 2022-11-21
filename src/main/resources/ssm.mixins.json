@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "priority": 1100,
+  "package": "com.drakkens.ssm.mixins",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "ssm.refmap.json",
+  "mixins": [
+    "MachinePlacedExplosiveBlockReplacer"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "minVersion": "0.8"
+}

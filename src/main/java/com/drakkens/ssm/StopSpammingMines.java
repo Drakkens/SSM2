@@ -14,7 +14,7 @@ import org.apache.logging.log4j.Logger;
 
 @Mod("ssm")
 public class StopSpammingMines {
-    private static final Logger LOGGER = LogManager.getLogger();
+    public static final Logger LOGGER = LogManager.getLogger();
     public static final String MODID = "ssm";
 
     public StopSpammingMines() {
