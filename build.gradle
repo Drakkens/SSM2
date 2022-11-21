@@ -189,6 +189,10 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
     implementation fg.deobf('curse.maven:securitycraft-64760:3921270')
     implementation fg.deobf('curse.maven:buildinggadgets-298187:4095788')
+    implementation fg.deobf('curse.maven:mcjtylib-233105:4086449')
+    implementation fg.deobf('curse.maven:rftoolsbase-326041:3970754')
+    implementation fg.deobf('curse.maven:rftoolsbuilder-347706:4008043')
+    implementation fg.deobf('curse.maven:rftoolspower-290209:4087998')
 
 
 
