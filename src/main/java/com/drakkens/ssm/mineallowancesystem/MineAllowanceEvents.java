@@ -24,7 +24,7 @@ public class MineAllowanceEvents {
     public static void onPlayerCloned(PlayerEvent.Clone event) {
         if (event.isWasDeath()) {
             Player oldPlayer = event.getOriginal();
-            Player newPlayer = event.getPlayer();
+            Player newPlayer = event.getEntity();
             oldPlayer.reviveCaps();
             oldPlayer.getCapability(PlayerMineAllowanceProvider.PLAYER_MINE_ALLOWANCE).ifPresent((oldPlayerAllowance) -> {
                 newPlayer.getCapability(PlayerMineAllowanceProvider.PLAYER_MINE_ALLOWANCE).ifPresent((newPlayerAllowance) -> {

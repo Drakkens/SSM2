@@ -7,7 +7,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 
 import java.util.Collection;
@@ -32,7 +32,7 @@ public class ResetMines {
             });
         }
 
-        sourceStack.sendSuccess((new TextComponent("Success!")).withStyle(ChatFormatting.GREEN), true);
+        sourceStack.sendSuccess((Component.literal("Success!")).withStyle(ChatFormatting.GREEN), true);
         return 1;
     }
 }

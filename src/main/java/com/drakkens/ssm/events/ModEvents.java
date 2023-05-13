@@ -9,8 +9,7 @@ import com.drakkens.ssm.mineallowancesystem.PlayerAllowanceConfig;
 import com.drakkens.ssm.mineallowancesystem.PlayerMineAllowanceProvider;
 import net.geforcemods.securitycraft.blocks.mines.ExplosiveBlock;
 import net.minecraft.ChatFormatting;
-import net.minecraft.Util;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
@@ -20,7 +19,7 @@ import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.TickEvent.Phase;
-import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.server.ServerLifecycleHooks;
@@ -66,7 +65,7 @@ public class ModEvents {
                 BlockData gadgetTrueBlock = GadgetUtils.getToolBlock(gadget);
 
                 if (gadgetTrueBlock.getState().getBlock() instanceof ExplosiveBlock) {
-                    player.sendMessage(new TranslatableComponent("message.nogadgets").withStyle(ChatFormatting.RED), Util.NIL_UUID);
+                    player.sendSystemMessage(Component.translatable("message.nogadgets").withStyle(ChatFormatting.RED));
                     event.setCanceled(true);
                     return;
 
@@ -85,14 +84,14 @@ public class ModEvents {
             if (var2 instanceof Player player) {
                 player.getCapability(PlayerMineAllowanceProvider.PLAYER_MINE_ALLOWANCE).ifPresent((playerMineAllowance) -> {
                     if (playerMineAllowance.getMineAllowance() == 0) {
-                        player.sendMessage((new TranslatableComponent(MESSAGE_NO_ALLOWANCE)).withStyle(ChatFormatting.RED), Util.NIL_UUID);
+                        player.sendSystemMessage((Component.translatable(MESSAGE_NO_ALLOWANCE)).withStyle(ChatFormatting.RED));
                         event.setCanceled(true);
                     } else if (playerMineAllowance.getMineAllowance() == 1) {
                         playerMineAllowance.subtractMineAllowance(1);
-                        player.sendMessage((new TranslatableComponent(MESSAGE_NO_ALLOWANCE)).withStyle(ChatFormatting.YELLOW), Util.NIL_UUID);
+                        player.sendSystemMessage((Component.translatable(MESSAGE_NO_ALLOWANCE)).withStyle(ChatFormatting.YELLOW));
                     } else {
                         playerMineAllowance.subtractMineAllowance(1);
-                        player.sendMessage((new TranslatableComponent(MESSAGE_REMAINING, playerMineAllowance.getMineAllowance())).withStyle(ChatFormatting.GREEN), Util.NIL_UUID);
+                        player.sendSystemMessage((Component.translatable(MESSAGE_REMAINING, playerMineAllowance.getMineAllowance())).withStyle(ChatFormatting.GREEN));
                     }
                 });
             }
